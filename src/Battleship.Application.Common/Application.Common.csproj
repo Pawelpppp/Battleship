@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	  <RootNamespace>Battleship.Application.Common</RootNamespace>
+	  <AssemblyName>Battleship.Application.Common</AssemblyName>
+  </PropertyGroup>
+
+</Project>

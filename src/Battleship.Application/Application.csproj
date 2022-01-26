@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Battleship.Application</RootNamespace>
+		<AssemblyName>Battleship.Application</AssemblyName>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Battleship.Application.Common\Application.Common.csproj" />
+		<ProjectReference Include="..\Battleship.Domain\Domain.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	  <RootNamespace>Battleship.Infrastructure</RootNamespace>
+	  <AssemblyName>Battleship.Infrastructure</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Battleship.Application\Battleship.Application.csproj" />
+  </ItemGroup>
+
+</Project>
