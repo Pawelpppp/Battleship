@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Battleship.Application.Interfaces
 {
-    public interface IBattleshipRepository : IGenericRepository<object>
+    public interface IBattleshipRepository : IGenericRepository<Battleship.Domain.Entities.Battleship>
     {
     }
 }

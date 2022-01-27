@@ -1,10 +1,10 @@
 ﻿using Battleship.Application.Dtos;
 using MediatR;
-using System.Collections.Generic;
 
 namespace Battleship.Application.Queries.Battleship
 {
-    public class GetAllBattleshipsQuery : IRequest<ICollection<BattleshipDto>>
+    public class GetAllBattleshipsQuery : IRequest<BattleshipDto>
     {
+        public long id;
     }
 }
