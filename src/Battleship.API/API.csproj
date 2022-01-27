@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Battleship.Application\Battleship.Application.csproj" />
-    <ProjectReference Include="..\Battleship.Infrastructure\Battleship.Infrastructure.csproj" />
+    <ProjectReference Include="..\Battleship.Application\Application.csproj" />
+    <ProjectReference Include="..\Battleship.Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
