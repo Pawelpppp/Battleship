@@ -1,7 +1,4 @@
 ﻿using Battleship.Application.Interfaces;
-using System.Collections.Generic;
-using System.Text;
-using Battleship.Domain.Entities;
 using Battleship.Infrastructure.Persistence;
 
 namespace Battleship.Infrastructure.Repositories

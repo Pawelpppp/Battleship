@@ -20,6 +20,7 @@ namespace Battleship.Infrastructure
             services.AddTransient<IDateTime, DateTimeService>();
 
             services.AddTransient<IBattleshipRepository, BattleshipRepository>();
+            services.AddTransient<IBoardRepository, BoardRepository>();
             return services;
         }
     }

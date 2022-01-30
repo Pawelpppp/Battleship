@@ -31,24 +31,64 @@ namespace Battleship.Infrastructure.Repositories
             return await Get().SingleOrDefaultAsync(e => e.Id == id);
         }
 
-        public Task DeleteAsync(TEntity entity, bool saveChanges = true)
+        public virtual async Task UpdateAsync(TEntity entity, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            _entities.Entry(entity).State = EntityState.Modified;
+            if (saveChanges)
+            {
+                await SaveChangesAsync();
+            }
         }
 
-        public Task DeleteAsync(long id, bool saveChanges = true)
+        public virtual async Task InsertAsync(TEntity entity, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            _dbset.Add(entity);
+            if (saveChanges)
+            {
+                await SaveChangesAsync();
+            }
         }
 
-        public Task InsertAsync(TEntity entity, bool saveChanges = true)
+        public virtual async Task DeleteAsync(TEntity entity, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                return;
+            }
+
+            if (_entities.Entry(entity).State == EntityState.Detached)
+            {
+                _dbset.Attach(entity);
+            }
+
+            _dbset.Remove(entity);
+            if (saveChanges)
+            {
+                await SaveChangesAsync();
+            }
         }
 
-        public Task UpdateAsync(TEntity entity, bool saveChanges = true)
+        public virtual async Task DeleteAsync(long id, bool saveChanges = true)
         {
-            throw new NotImplementedException();
+            await DeleteAsync(await FindAsync(id), saveChanges);
+        }
+
+        protected async Task<int> SaveChangesAsync()
+        {
+            try
+            {
+                return await _entities.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                // log an exception
+                throw ex;
+            }
+            catch (DbUpdateException ex)
+            {
+                // log an exception
+                throw ex;
+            }
         }
     }
 }

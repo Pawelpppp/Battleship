@@ -1,11 +1,7 @@
 ﻿using Battleship.Application.Common.Interfaces;
 using Battleship.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,8 +16,9 @@ namespace Battleship.Infrastructure.Persistence
             _dateTime = dateTime;
         }
 
-
-        public DbSet<Battleship.Domain.Entities.Battleship> Battleships { get; set; }
+        public DbSet<Domain.Entities.Battleship> Battleships { get; set; }
+        public DbSet<Board> Boards { get; set; }
+        public DbSet<Game> Games { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -31,6 +28,7 @@ namespace Battleship.Infrastructure.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.CreationDate = _dateTime.Now;
+                        entry.Entity.LastModified = _dateTime.Now;
                         break;
 
                     case EntityState.Modified:

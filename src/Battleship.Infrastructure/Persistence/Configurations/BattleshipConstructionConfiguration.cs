@@ -1,13 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Battleship.Infrastructure.Persistence.Configurations
 {
-    internal class BattleshipConstructionConfiguration : IEntityTypeConfiguration<Domain.Entities.Battleship>
+    public class BattleshipConstructionConfiguration : IEntityTypeConfiguration<Domain.Entities.Battleship>
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.Entities.Battleship> builder)
         {
@@ -18,9 +13,16 @@ namespace Battleship.Infrastructure.Persistence.Configurations
                 .HasColumnName("id")
                 .UseIdentityColumn()
                 .ValueGeneratedOnAdd();
+
             builder.Property(b => b.Name)
                 .HasColumnName("name")
                 .IsRequired();
+
+            builder.Property(b => b.IsDestroyed)
+                .HasColumnName("isDestroyed")
+                .HasDefaultValue(false);
+
+            builder.HasMany(b => b.Area);
         }
     }
 }
