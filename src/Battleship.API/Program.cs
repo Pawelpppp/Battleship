@@ -40,6 +40,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.AddAplicationMiddlewares();
+
 app.MapControllers();
 
 app.Run();
