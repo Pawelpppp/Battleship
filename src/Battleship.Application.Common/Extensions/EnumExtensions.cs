@@ -15,6 +15,5 @@ namespace Battleship.Application.Common.Extensions
                 .OfType<TAttribute>()
                 .SingleOrDefault();
         }
-
     }
 }
