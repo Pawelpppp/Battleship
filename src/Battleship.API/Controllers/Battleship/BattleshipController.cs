@@ -14,6 +14,11 @@ namespace API.Controllers.Battleship
             return Ok(result);
         }
 
+        /// <summary>
+        /// Try to set ship on board
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost()]
         public async Task<IActionResult> SetShip([FromBody] SetShipCommand command)
         {

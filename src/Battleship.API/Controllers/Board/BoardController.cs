@@ -12,6 +12,11 @@ namespace API.Controllers.Board
             return Ok(result);
         }
 
+        /// <summary>
+        /// Set ships that on bord in random places
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost("/setAllShipsOnBoard")]
         public async Task<IActionResult> SetShipsInRandomPlaces(long id)
         {

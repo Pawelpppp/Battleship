@@ -25,6 +25,10 @@ namespace Battleship.Infrastructure.Persistence.Configurations
                 .HasColumnName("isBattleshipsDestyroyed")
                 .HasDefaultValue(false);
 
+            builder.Property(b => b.GameOwnerId)
+                .HasColumnName("gameOwner_Id");
+
+            builder.HasOne(b => b.GameOwner).WithMany(b => b.Boards);
             builder.HasMany(b => b.Shots);
         }
     }

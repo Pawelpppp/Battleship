@@ -11,5 +11,7 @@ namespace Battleship.Domain.Entities
 
         public ICollection<Field> Shots { get; set; }
 
+        public virtual Game GameOwner { get; set; }
+        public long? GameOwnerId { get; set; }
     }
 }

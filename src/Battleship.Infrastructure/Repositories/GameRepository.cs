@@ -4,9 +4,9 @@ using Battleship.Infrastructure.Persistence;
 
 namespace Battleship.Infrastructure.Repositories
 {
-    internal class BoardRepository : GenericRepository<Board>, IBoardRepository
+    internal class GameRepository : GenericRepository<Game>, IGameRepository
     {
-        public BoardRepository(ApplicationDbContext context) : base(context)
+        public GameRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

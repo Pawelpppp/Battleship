@@ -21,6 +21,7 @@ namespace Battleship.Infrastructure
 
             services.AddTransient<IBattleshipRepository, BattleshipRepository>();
             services.AddTransient<IBoardRepository, BoardRepository>();
+            services.AddTransient<IGameRepository, GameRepository>();
             return services;
         }
     }
