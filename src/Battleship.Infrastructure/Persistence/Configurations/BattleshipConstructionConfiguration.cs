@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Battleship.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace Battleship.Infrastructure.Persistence.Configurations
 {
@@ -21,6 +22,10 @@ namespace Battleship.Infrastructure.Persistence.Configurations
             builder.Property(b => b.IsDestroyed)
                 .HasColumnName("isDestroyed")
                 .HasDefaultValue(false);
+
+            builder.Property(b => b.Type)
+                .HasColumnName("type")
+                .HasDefaultValue(BattleshipType.Empty);
 
             builder.Property(b => b.BoardId)
                 .HasColumnName("board_id");

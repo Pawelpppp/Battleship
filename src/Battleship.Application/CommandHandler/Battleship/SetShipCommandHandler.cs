@@ -1,10 +1,13 @@
 ﻿using Application.Common.CQRS;
 using AutoMapper;
+using Battleship.Application.Attributes;
 using Battleship.Application.Command.Battleship;
 using Battleship.Application.Common.Exceptions;
+using Battleship.Application.Common.Extensions;
 using Battleship.Application.Dtos;
 using Battleship.Application.Interfaces;
 using Battleship.Domain.Entities;
+using Battleship.Domain.Enums;
 using FluentValidation.Results;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +35,7 @@ namespace Battleship.Application.CommandHandler.Ship
             var battelships = _repository.GetAllShipsFromBord(board.Id);
             var battleShipArea = GenerateShipArea(command.StartPointX, command.StartPointY, command.IsVertical, command.ShipType);
 
-            var areaInUse = battelships?.SelectMany(x => x.Area).ToList();
+            var areaInUse = _repository.GetBattleShipsAreaFromBord(board.Id);
             if (!IsAreaIsEmptyToPutShip(areaInUse, battleShipArea))
             {
                 throw new ValidationException(new List<ValidationFailure>() { new ValidationFailure("Battleship.Area", $"Battleship area is in use") });
@@ -43,7 +46,7 @@ namespace Battleship.Application.CommandHandler.Ship
                 throw new ValidationException(new List<ValidationFailure>() { new ValidationFailure("Battleship.Type", $"Battleship of type {command.ShipType} is allready set in the board") });
             }
 
-            var newBattleship = new Domain.Entities.Battleship(battleShipArea, command.ShipType.ToString(), board);
+            var newBattleship = new Domain.Entities.Battleship(battleShipArea, _mapper.Map<BattleshipType>(command.ShipType), board);
             await _repository.InsertAsync(newBattleship);
 
             return newBattleship.Id;
@@ -51,7 +54,7 @@ namespace Battleship.Application.CommandHandler.Ship
 
         private bool IsTypeOfShipIsOnBord(IEnumerable<Domain.Entities.Battleship> battelships, BattleshipTypeDto shipType)
         {
-           var result= battelships.Any(x => x.Name == shipType.ToString());
+            var result = battelships.Any(x => x.Name == shipType.ToString());
             return result;
         }
 
@@ -65,7 +68,7 @@ namespace Battleship.Application.CommandHandler.Ship
         {
             if (areaInUse != null)
             {
-                var common = areaInUse?.FirstOrDefault(x => battleShipArea.Any(y => y.X == x.X || y.Y == x.Y));
+                var common = areaInUse?.FirstOrDefault(x => battleShipArea.Any(y => y.X == x.X && y.Y == x.Y));
 
                 if (common != null)
                 {
@@ -85,7 +88,8 @@ namespace Battleship.Application.CommandHandler.Ship
         /// <returns></returns>
         private List<Field> GenerateShipArea(int startPointX, int startPointY, bool isVertical, BattleshipTypeDto shipType)
         {
-            var size = (int)shipType;
+            var attribute = shipType.GetAttribute<ShipSizeAttribute>();
+            var size = attribute?.Size;
             var result = new List<Field>();
             for (int i = 0; i < size; i++)
             {

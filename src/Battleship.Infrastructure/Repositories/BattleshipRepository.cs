@@ -18,5 +18,11 @@ namespace Battleship.Infrastructure.Repositories
             var result = Get().Where(x => x.BoardId == id).AsEnumerable();
             return result;
         }
+
+        public IEnumerable<Field> GetBattleShipsAreaFromBord(long id)
+        {
+            var result = Get().Where(x => x.BoardId == id).SelectMany(x=>x.Area).ToList();
+            return result;
+        }
     }
 }
