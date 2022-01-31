@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace Battleship.Infrastructure.Persistence.Configurations
 {
@@ -26,7 +25,6 @@ namespace Battleship.Infrastructure.Persistence.Configurations
                 .HasColumnName("isBattleshipsDestyroyed")
                 .HasDefaultValue(false);
 
-            builder.HasMany(b => b.Battleships);
             builder.HasMany(b => b.Shots);
         }
     }

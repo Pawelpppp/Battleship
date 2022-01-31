@@ -5,7 +5,7 @@ namespace Battleship.Domain.Entities
 {
     public class Board : EntityBase
     {
-        public ICollection<Battleship> Battleships { get; set; }
+        public virtual ICollection<Battleship> Battleships { get; set; }
 
         public bool IsBattleshipsDestyroyed { get; set; }
 

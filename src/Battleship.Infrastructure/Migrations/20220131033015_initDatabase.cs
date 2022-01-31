@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Battleship.Infrastructure.Migrations
 {
-    public partial class init : Migration
+    public partial class initDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,7 +60,7 @@ namespace Battleship.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "text", nullable: false),
                     isDestroyed = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
-                    BoardId = table.Column<long>(type: "bigint", nullable: true),
+                    board_id = table.Column<long>(type: "bigint", nullable: false),
                     CreationDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     LastModified = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true)
                 },
@@ -68,11 +68,12 @@ namespace Battleship.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Battleship", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Battleship_Board_BoardId",
-                        column: x => x.BoardId,
+                        name: "FK_Battleship_Board_board_id",
+                        column: x => x.board_id,
                         principalSchema: "BattleshipDB",
                         principalTable: "Board",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -107,10 +108,10 @@ namespace Battleship.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Battleship_BoardId",
+                name: "IX_Battleship_board_id",
                 schema: "BattleshipDB",
                 table: "Battleship",
-                column: "BoardId");
+                column: "board_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Board_GameId",

@@ -32,8 +32,9 @@ namespace Battleship.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("BoardId")
-                        .HasColumnType("bigint");
+                    b.Property<long>("BoardId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("board_id");
 
                     b.Property<DateTimeOffset>("CreationDate")
                         .HasColumnType("timestamp with time zone");
@@ -152,9 +153,13 @@ namespace Battleship.Infrastructure.Migrations
 
             modelBuilder.Entity("Battleship.Domain.Entities.Battleship", b =>
                 {
-                    b.HasOne("Battleship.Domain.Entities.Board", null)
+                    b.HasOne("Battleship.Domain.Entities.Board", "Board")
                         .WithMany("Battleships")
-                        .HasForeignKey("BoardId");
+                        .HasForeignKey("BoardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Board");
                 });
 
             modelBuilder.Entity("Battleship.Domain.Entities.Board", b =>

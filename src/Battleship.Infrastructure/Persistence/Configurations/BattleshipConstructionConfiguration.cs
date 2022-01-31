@@ -22,6 +22,9 @@ namespace Battleship.Infrastructure.Persistence.Configurations
                 .HasColumnName("isDestroyed")
                 .HasDefaultValue(false);
 
+            builder.Property(b => b.BoardId)
+                .HasColumnName("board_id");
+
             builder.HasMany(b => b.Area);
         }
     }

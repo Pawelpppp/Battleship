@@ -22,11 +22,11 @@ namespace Battleship.Application.Validators.Battleship
                 .IsInEnum();
             RuleFor(x => x.StartPointX)
                 .NotNull()
-                .GreaterThanOrEqualTo(0)
+                .GreaterThanOrEqualTo(1)
                 .LessThan(boardSize);
             RuleFor(x => x.StartPointY)
                 .NotNull()
-                .GreaterThanOrEqualTo(0)
+                .GreaterThanOrEqualTo(1)
                 .LessThanOrEqualTo(boardSize);
             RuleFor(x => x).Must(ShipMastHaveSpace)
                 .WithMessage("Not enoth space for ship");

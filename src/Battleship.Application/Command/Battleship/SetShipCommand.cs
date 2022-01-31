@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Battleship.Application.Command.Battleship
 {
-    public class SetShipCommand : IRequest<bool>
+    public class SetShipCommand : IRequest<long>
     {
         public long BoradId { get; set; }
         public BattleshipTypeDto ShipType { get; set; }
