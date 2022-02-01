@@ -1,6 +1,6 @@
 ﻿using Application.Common.CQRS;
 using AutoMapper;
-using Battleship.Application.Command;
+using Battleship.Application.Command.Board;
 using Battleship.Application.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;

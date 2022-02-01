@@ -1,6 +1,7 @@
 using Battleship.Application;
 using Battleship.Infrastructure;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 

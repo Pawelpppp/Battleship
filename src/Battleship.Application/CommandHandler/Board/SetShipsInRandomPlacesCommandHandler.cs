@@ -1,7 +1,6 @@
 ﻿using Application.Common.CQRS;
 using AutoMapper;
 using Battleship.Application.Attributes;
-using Battleship.Application.Command;
 using Battleship.Application.Command.Battleship;
 using Battleship.Application.Common.Exceptions;
 using Battleship.Application.Common.Extensions;
@@ -82,7 +81,7 @@ namespace Battleship.Application.CommandHandler.Board
             catch (ValidationException ex)
             {
                 // log
-
+                //todo
                 //chenge the values
                 setShipCommand = GenerateRandomSetShipCommand(setShipCommand.ShipType, setShipCommand.BoradId);
 

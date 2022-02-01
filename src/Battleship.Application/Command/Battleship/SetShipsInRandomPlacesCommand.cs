@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Battleship.Application.Command
+namespace Battleship.Application.Command.Battleship
 {
     public class SetShipsInRandomPlacesCommand : IRequest<long>
     {

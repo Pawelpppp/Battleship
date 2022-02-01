@@ -1,4 +1,5 @@
-﻿using Battleship.Application.Command;
+﻿using Battleship.Application.Command.Battleship;
+using Battleship.Application.Command.Board;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Board
