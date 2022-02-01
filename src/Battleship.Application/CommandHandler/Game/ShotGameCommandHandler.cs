@@ -1,15 +1,10 @@
 ﻿using Application.Common.CQRS;
 using AutoMapper;
-using Battleship.Application.Attributes;
 using Battleship.Application.Command.Battleship;
 using Battleship.Application.Command.Board;
 using Battleship.Application.Command.Game;
 using Battleship.Application.Common.Exceptions;
-using Battleship.Application.Common.Extensions;
-using Battleship.Application.Dtos;
 using Battleship.Application.Interfaces;
-using Battleship.Domain.Entities;
-using Battleship.Domain.Enums;
 using FluentValidation.Results;
 using MediatR;
 using System;
@@ -33,15 +28,18 @@ namespace Battleship.Application.CommandHandler.Game
         {
             SetRandomValues(ref command);
 
-            var game = _repository.GetGame(command.GameId);
+            var game = _repository.WithContend(command.GameId);
             if (game == null)
             {
                 throw new ValidationException(new List<ValidationFailure>() { new ValidationFailure("Game", $"Game with Id:{game.Id} does not exists") });
             }
-
             long boardId = game.IsBoardAMove ? game.Boards.First().Id : game.Boards.ElementAt(1).Id;
-            var response = await _mediator.Send(new ShotBoardCommand(boardId, command.X, command.Y));
+            if (game.Boards.Any(x => x.IsBattleshipsDestyroyed))
+            {
+                return new ShotResponse($"Game Over! One of the players Won!. Please start new Game");
+            }
 
+            var response = await _mediator.Send(new ShotBoardCommand(boardId, command.X, command.Y));
             game.IsBoardAMove = !game.IsBoardAMove;
             await _repository.UpdateAsync(game);
 

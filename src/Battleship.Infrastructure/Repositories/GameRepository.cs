@@ -12,7 +12,7 @@ namespace Battleship.Infrastructure.Repositories
         {
         }
 
-        public Game GetGame(long gameId)
+        public Game WithContend(long gameId)
         {
             var result = Get().Where(e => e.Id == gameId).Include(x => x.Boards).Single();
             return result;

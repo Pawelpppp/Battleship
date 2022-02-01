@@ -9,6 +9,6 @@ namespace Battleship.Application.Interfaces
         Task<IEnumerable<Board>> FindBordsInGame(long gameId);
         Task<Board> GetBoardWithContent(long boardId, int x, int y);
         Task<bool> IsStrikeIsTheLastOnBattleship(long boardId, ICollection<Field> battshipArea);
-
+        bool IsAllBattleshipDestroyed(long boardId);
     }
 }

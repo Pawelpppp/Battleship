@@ -44,6 +44,13 @@ namespace Battleship.Application.CommandHandler.Board
                 response = new ShotResponse("You miss the ship. Now move another user");
             }
 
+            //check the win state
+            var isWin = _repository.IsAllBattleshipDestroyed(board.Id);
+            if (isWin)
+            {
+                board.IsBattleshipsDestyroyed = true;
+                response.Response.Add("You lost all ships destroyed");
+            }
             // Add shot
             board.Shots.Add(field);
             await _repository.UpdateAsync(board, false);

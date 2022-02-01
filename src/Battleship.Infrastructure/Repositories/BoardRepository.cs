@@ -38,5 +38,11 @@ namespace Battleship.Infrastructure.Repositories
             // check if this hit is the last area of battleship
             return Task.FromResult(shipSttrikes.Count(s => s == true) < shipSttrikes.Count);
         }
+
+        public bool IsAllBattleshipDestroyed(long boardId)
+        {
+            var result = Get().Where(e => e.Id == boardId).Any(x => !x.IsBattleshipsDestyroyed);
+            return result;
+        }
     }
 }

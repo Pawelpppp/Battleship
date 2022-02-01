@@ -5,6 +5,6 @@ namespace Battleship.Application.Interfaces
 {
     public interface IGameRepository : IGenericRepository<Game>
     {
-        public Game GetGame(long gameId);
+        public Game WithContend(long gameId);
     }
 }
