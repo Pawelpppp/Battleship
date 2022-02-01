@@ -54,7 +54,7 @@ namespace Battleship.Application.CommandHandler.Board
                 if (!battelships.Any(x => x.Type == posiibleShipType))
                 {
                     var setShipCommand = GenerateRandomSetShipCommand(_mapper.Map<BattleshipTypeDto>(posiibleShipType), command.BoardId);
-                    var result = await TrayAdd(0, setShipCommand);
+                    var result = await TryAdd(0, setShipCommand);
                 }
             }
 
@@ -67,7 +67,7 @@ namespace Battleship.Application.CommandHandler.Board
         /// <param name="atteptNymber"></param>
         /// <param name="setShipCommand"></param>
         /// <returns></returns>
-        private async Task<long?> TrayAdd(int atteptNymber, SetShipCommand setShipCommand)
+        private async Task<long?> TryAdd(int atteptNymber, SetShipCommand setShipCommand)
         {
             long? result = null;
             if (atteptNymber > attemptMax)
@@ -86,7 +86,7 @@ namespace Battleship.Application.CommandHandler.Board
                 setShipCommand = GenerateRandomSetShipCommand(setShipCommand.ShipType, setShipCommand.BoradId);
 
                 //try one more time
-                await TrayAdd(atteptNymber++, setShipCommand);
+                await TryAdd(atteptNymber++, setShipCommand);
             }
 
             return result;

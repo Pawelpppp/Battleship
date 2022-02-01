@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Battleship.Domain.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Battleship.Application.Interfaces
 {
-    public interface IBoardRepository : IGenericRepository<Battleship.Domain.Entities.Board>
+    public interface IBoardRepository : IGenericRepository<Board>
     {
-        Task<IEnumerable<Battleship.Domain.Entities.Board>> FindBordsInGame(long gameId);
+        Task<IEnumerable<Board>> FindBordsInGame(long gameId);
+        Task<Board> GetBoardWithContent(long boardId, int x, int y);
+        Task<bool> IsStrikeIsTheLastOnBattleship(long boardId, ICollection<Field> battshipArea);
+
     }
 }

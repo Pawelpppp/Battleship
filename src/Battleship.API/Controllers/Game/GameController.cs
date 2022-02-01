@@ -37,7 +37,7 @@ namespace API.Controllers.Game
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost("Shot")]
-        public async Task<IActionResult> Shot([FromBody] ShotCommand command, long id)
+        public async Task<IActionResult> Shot([FromBody] ShotGameCommand command, long id)
         {
             if (command.GameId != id)
             {

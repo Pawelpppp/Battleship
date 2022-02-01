@@ -38,7 +38,6 @@ namespace Battleship.Application.CommandHandler.Game
             await _mediator.Send(new SetShipsInRandomPlacesCommand(boards.ElementAt(1).Id));
 
             return game.Id;
-
         }
     }
 }
