@@ -9,6 +9,6 @@ To run the game locally:
 - F5
 
 How to play:
-Game/NewGame() -          create new two empty boards in the response will return Game id ! it will be required for next endpoints
-Game/SetShipsRandom() -   set all not see ships in random places
-Game/Shot()-              Strike! You  can enter x and y axes where you want to shoot 1-10. If you do not provide them, they will be randomly selected. Next strike do next user.
++ Game/NewGame() -          create new two empty boards in the response will return Game id ! it will be required for next endpoints
++ Game/SetShipsRandom() -   set all not see ships in random places
++ Game/Shot()-              Strike! You  can enter x and y axes where you want to shoot 1-10. If you do not provide them, they will be randomly selected. Next strike do next user.
