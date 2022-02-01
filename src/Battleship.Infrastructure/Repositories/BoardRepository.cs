@@ -41,7 +41,7 @@ namespace Battleship.Infrastructure.Repositories
 
         public bool IsAllBattleshipDestroyed(long boardId)
         {
-            var result = Get().Where(e => e.Id == boardId).Any(x => !x.IsBattleshipsDestyroyed);
+            var result = Get().Where(e => e.Id == boardId).All(x => x.IsBattleshipsDestyroyed);
             return result;
         }
     }

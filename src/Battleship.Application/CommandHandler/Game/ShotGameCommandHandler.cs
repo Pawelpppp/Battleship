@@ -50,7 +50,7 @@ namespace Battleship.Application.CommandHandler.Game
         private void SetRandomValues(ref ShotGameCommand command)
         {
             var rand = new Random();
-            command.GameId = command.GameId != 0 ? command.GameId : 1;
+            command.GameId = command.GameId != 0 ? command.GameId : 3;
             command.X = command.X != 0 ? command.X : rand.Next(1, 10);
             command.Y = command.Y != 0 ? command.Y : rand.Next(1, 10);
         }

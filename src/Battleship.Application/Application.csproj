@@ -14,5 +14,9 @@
 		<ProjectReference Include="..\Battleship.Application.Common\Application.Common.csproj" />
 		<ProjectReference Include="..\Battleship.Domain\Domain.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Queries\Battleship\" />
+	  <Folder Include="QueryHandlers\Battleship\" />
+	</ItemGroup>
 
 </Project>

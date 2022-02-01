@@ -19,4 +19,9 @@
     <ProjectReference Include="..\Battleship.Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Board\" />
+    <Folder Include="Controllers\Battleship\" />
+  </ItemGroup>
+
 </Project>
